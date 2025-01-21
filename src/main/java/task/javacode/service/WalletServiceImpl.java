@@ -13,6 +13,7 @@ import task.javacode.model.mapper.WalletMapper;
 import task.javacode.repository.WalletRepository;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -30,8 +31,11 @@ public class WalletServiceImpl implements WalletService {
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ)
     public WalletResponse updateBalance(WalletBalanceUpdateRequest request) {
-        WalletEntity currentEntity = walletRepository.findByIdForUpdate(request.getId()).orElseThrow(
-                () -> new WalletNotExistException("Wallet not exist"));
+        WalletEntity currentEntity = walletRepository.findByIdForUpdate(request.getId())
+                .orElseGet(() -> WalletEntity.builder()
+                .id(request.getId()).balance(BigDecimal.ZERO)
+                        .createdAt(LocalDateTime.now())
+                .build());
         WalletEntity newEntity = updateWalletBalance(request, currentEntity);
         walletRepository.save(newEntity);
         return WalletMapper.toResponse(newEntity);

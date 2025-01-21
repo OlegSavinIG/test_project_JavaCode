@@ -1,5 +1,6 @@
 package task.javacode.walletqueue;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import task.javacode.service.WalletService;
@@ -18,6 +19,7 @@ public class WalletUpdateBalanceProcessor {
         this.walletService = walletService;
     }
 
+    @PostConstruct
     public void startProcessing() {
         for (int i = 0; i < threadCount; i++) {
             new Thread(() -> {

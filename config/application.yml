@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://db:5432/wallet_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      hibernate:
+        ddl-auto: none
+        show-sql: true
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  application:
+    name: WalletService
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db.changelog-master.yaml
+
+processor:
+  thread-count: ${THREAD_COUNT:5}

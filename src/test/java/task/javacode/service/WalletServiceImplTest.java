@@ -120,18 +120,4 @@ class WalletServiceImplTest {
         verify(walletRepository, times(1)).findByIdForUpdate(walletId);
         verify(walletRepository, never()).save(any(WalletEntity.class));
     }
-
-    @Test
-    void updateBalance_ShouldThrowWalletNotExistException() {
-        WalletBalanceUpdateRequest request = WalletBalanceUpdateRequest.builder()
-                .id(walletId)
-                .operationType(OperationType.DEPOSIT)
-                .amount(BigDecimal.valueOf(500))
-                .build();
-
-        when(walletRepository.findByIdForUpdate(walletId)).thenReturn(Optional.empty());
-
-        assertThrows(WalletNotExistException.class, () -> walletService.updateBalance(request));
-        verify(walletRepository, times(1)).findByIdForUpdate(walletId);
-    }
 }
