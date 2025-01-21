@@ -1,22 +1,24 @@
-- changeSet:
-    id: 1
-    author: developer
-    changes:
-      - createTable:
-          tableName: wallets
-          columns:
-            - column:
-                name: id
-                type: UUID
-                constraints:
-                  primaryKey: true
-                  nullable: false
-            - column:
-                name: balance
-                type: DECIMAL(18,2)
-                constraints:
-                  nullable: false
-            - column:
-                name: created_at
-                type: TIMESTAMP
-                defaultValueComputed: CURRENT_TIMESTAMP
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: developer
+      changes:
+        - createTable:
+            tableName: wallets
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: balance
+                  type: DECIMAL(18,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false

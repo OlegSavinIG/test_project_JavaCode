@@ -17,6 +17,7 @@ import java.util.UUID;
 @Builder
 public class WalletEntity {
     @Id
+    @Column(name = "id")
     private UUID id;
     @Column(name = "balance", nullable = false)
     private BigDecimal balance;

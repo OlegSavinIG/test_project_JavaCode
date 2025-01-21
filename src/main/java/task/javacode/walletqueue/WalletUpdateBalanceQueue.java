@@ -1,10 +1,11 @@
 package task.javacode.walletqueue;
 
+import org.springframework.stereotype.Component;
 import task.javacode.model.WalletBalanceUpdateRequest;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
+@Component
 public class WalletUpdateBalanceQueue {
         private final BlockingQueue<WalletBalanceUpdateRequest> queue = new LinkedBlockingQueue<>();
 

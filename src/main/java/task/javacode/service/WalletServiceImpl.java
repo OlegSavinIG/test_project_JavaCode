@@ -54,5 +54,4 @@ public class WalletServiceImpl implements WalletService {
         }
         return currentEntity;
     }
-
 }
